@@ -18,6 +18,10 @@ public class DAOUser {
 	@Column
 	@JsonIgnore
 	private String password;
+	@Column
+	private int points;
+	@Column
+	private int mistakes;
 
 	public String getUsername() {
 		return username;
@@ -49,5 +53,21 @@ public class DAOUser {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public int getMistakes() {
+		return mistakes;
+	}
+
+	public void setMistakes(int mistakes) {
+		this.mistakes = mistakes;
 	}
 }

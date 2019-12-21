@@ -5,6 +5,8 @@ public class UserDTO {
 	private String name;
 	private String surname;
 	private String password;
+	private int points;
+	private int mistakes;
 
 	public String getUsername() {
 		return username;
@@ -36,5 +38,21 @@ public class UserDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public int getMistakes() {
+		return mistakes;
+	}
+
+	public void setMistakes(int mistakes) {
+		this.mistakes = mistakes;
 	}
 }
