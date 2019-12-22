@@ -1,4 +1,4 @@
-package robert.trojan.model;
+package robert.trojan.dto;
 
 import java.io.Serializable;
 

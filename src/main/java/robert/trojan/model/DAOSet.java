@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name = "set")
 public class DAOSet {
 
-
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Id
     @Column

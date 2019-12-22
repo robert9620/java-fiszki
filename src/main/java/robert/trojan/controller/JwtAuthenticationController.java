@@ -13,9 +13,9 @@ import robert.trojan.service.JwtUserDetailsService;
 
 
 import robert.trojan.config.JwtTokenUtil;
-import robert.trojan.model.JwtRequest;
-import robert.trojan.model.JwtResponse;
-import robert.trojan.model.UserDTO;
+import robert.trojan.dto.JwtRequest;
+import robert.trojan.dto.JwtResponse;
+import robert.trojan.dto.UserDTO;
 
 @RestController
 @RequestMapping("auth")

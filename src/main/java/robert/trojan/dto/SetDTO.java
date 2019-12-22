@@ -1,4 +1,4 @@
-package robert.trojan.model;
+package robert.trojan.dto;
 
 public class SetDTO {
     private String name;

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import robert.trojan.dao.UserDao;
 import robert.trojan.model.DAOUser;
-import robert.trojan.model.UserDTO;
+import robert.trojan.dto.UserDTO;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
