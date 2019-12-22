@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import robert.trojan.dao.UserDao;
-import robert.trojan.model.DAOUser;
+import robert.trojan.entity.DAOUser;
 import robert.trojan.dto.UserDTO;
 
 @Service

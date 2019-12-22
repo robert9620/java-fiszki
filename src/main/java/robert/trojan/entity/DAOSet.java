@@ -1,4 +1,4 @@
-package robert.trojan.model;
+package robert.trojan.entity;
 
 import javax.persistence.*;
 
@@ -17,6 +17,8 @@ public class DAOSet {
 
     @ManyToOne
     private DAOUser user;
+
+    private Integer wordsAmount;
 
     public DAOSet(String name, Boolean isFavourite, DAOUser user) {
         this.name = name;
@@ -57,5 +59,13 @@ public class DAOSet {
 
     public void setUser(DAOUser user) {
         this.user = user;
+    }
+
+    public Integer getWordsAmount() {
+        return wordsAmount;
+    }
+
+    public void setWordsAmount(Integer wordsAmount) {
+        this.wordsAmount = wordsAmount;
     }
 }

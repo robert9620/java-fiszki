@@ -3,7 +3,7 @@ package robert.trojan.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import robert.trojan.dao.UserDao;
-import robert.trojan.model.DAOUser;
+import robert.trojan.entity.DAOUser;
 
 @RestController
 @CrossOrigin

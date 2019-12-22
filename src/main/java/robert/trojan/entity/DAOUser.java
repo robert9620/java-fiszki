@@ -1,4 +1,4 @@
-package robert.trojan.model;
+package robert.trojan.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

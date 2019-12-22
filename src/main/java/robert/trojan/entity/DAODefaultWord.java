@@ -1,10 +1,10 @@
-package robert.trojan.model;
+package robert.trojan.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "word")
-public class DAOWord {
+@Table(name = "defaultWord")
+public class DAODefaultWord {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Id
     @Column
@@ -15,15 +15,15 @@ public class DAOWord {
     private String definition;
 
     @ManyToOne
-    private DAOSet set;
+    private DAODefaultSet defaultSet;
 
-    public DAOWord(String word, String definition, DAOSet set) {
+    public DAODefaultWord(String word, String definition, DAODefaultSet defaultSet) {
         this.word = word;
         this.definition = definition;
-        this.set = set;
+        this.defaultSet = defaultSet;
     }
 
-    public DAOWord() {
+    public DAODefaultWord() {
     }
 
     public Integer getId() {
@@ -50,11 +50,11 @@ public class DAOWord {
         this.definition = definition;
     }
 
-    public DAOSet getSet() {
-        return set;
+    public DAODefaultSet getDefualtSet() {
+        return defaultSet;
     }
 
-    public void setSet(DAOSet set) {
-        this.set = set;
+    public void setDefualtSet(DAODefaultSet defaultSet) {
+        this.defaultSet = defaultSet;
     }
 }

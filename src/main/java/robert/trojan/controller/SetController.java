@@ -5,7 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import robert.trojan.dao.SetDao;
 import robert.trojan.dao.UserDao;
-import robert.trojan.model.DAOSet;
+import robert.trojan.dao.WordDao;
+import robert.trojan.entity.DAOSet;
 import robert.trojan.dto.SetDTO;
 
 import java.util.ArrayList;
@@ -20,6 +21,9 @@ public class SetController {
     @Autowired
     private SetDao setDao;
 
+    @Autowired
+    private WordDao wordDao;
+
     @PostMapping({ "/createSet" })
     public ResponseEntity<?> createSet(@RequestBody SetDTO set) {
         DAOSet newSet = new DAOSet(set.getName(), false, userDao.findByUsername(set.getUser()));
@@ -29,16 +33,25 @@ public class SetController {
 
     @GetMapping({ "/getUserSets" })
     public ArrayList<DAOSet> getUserSets(@RequestParam String username){
-        return setDao.findByUser(username);
+        ArrayList<DAOSet> response = setDao.findByUser(username);
+        for(DAOSet set: response){
+            set.setWordsAmount( wordDao.findBySetId(set.getId()).size() );
+        }
+        return response;
     }
 
     @GetMapping({ "/getUserFavouriteSets" })
     public ArrayList<DAOSet> getUserFavouriteSets(@RequestParam String username){
-        return setDao.findFavouriteByUser(username);
+        ArrayList<DAOSet> response = setDao.findFavouriteByUser(username);
+        for(DAOSet set: response){
+            set.setWordsAmount( wordDao.findBySetId(set.getId()).size() );
+        }
+        return response;
     }
 
     @DeleteMapping({ "/deleteUserSet" })
     public void deleteSet(@RequestParam Integer setId) {
+        wordDao.deleteWordFromSet(setId);
         setDao.deleteById(setId);
     }
 
