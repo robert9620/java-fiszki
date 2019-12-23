@@ -17,4 +17,9 @@ public class UserController {
 	public DAOUser getUserInfo(@RequestParam String username) {
 		return userDao.findByUsername(username);
 	}
+
+	@PutMapping({"/updateUserInfo"})
+	public int updateUserInfo(@RequestParam String userName, @RequestParam String newName, @RequestParam String newSurname){
+		return userDao.updateUserInfo(userName, newName, newSurname);
+	}
 }
