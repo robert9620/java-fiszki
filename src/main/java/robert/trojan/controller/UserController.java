@@ -22,4 +22,14 @@ public class UserController {
 	public int updateUserInfo(@RequestParam String userName, @RequestParam String newName, @RequestParam String newSurname){
 		return userDao.updateUserInfo(userName, newName, newSurname);
 	}
+
+	@PutMapping({"/addPoint"})
+	public int addPoint(@RequestParam String userName){
+		return userDao.addPoint(userName);
+	}
+
+	@PutMapping({"/addMistake"})
+	public int addMistake(@RequestParam String userName){
+		return userDao.addMistake(userName);
+	}
 }
