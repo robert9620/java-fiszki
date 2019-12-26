@@ -20,5 +20,8 @@ public interface UserDao extends CrudRepository<DAOUser, String> {
 	@Query(value = "UPDATE `user` SET `name`=:newName, `surname` =:newSurname WHERE `user`.`username` =:userName", nativeQuery = true)
 	int updateUserInfo(@Param("userName") String userName, @Param("newName") String newName, @Param("newSurname") String newSurname);
 
-	
+	@Modifying
+	@Transactional
+	@Query(value = "UPDATE `user` SET `password`=:newPassword WHERE `user`.`username`=:userName", nativeQuery = true)
+	int changeUserPassword(@Param("userName") String userName, @Param("newPassword") String newPassword);
 }

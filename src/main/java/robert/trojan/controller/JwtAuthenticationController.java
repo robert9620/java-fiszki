@@ -8,7 +8,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import robert.trojan.dao.UserDao;
 import robert.trojan.service.JwtUserDetailsService;
 
 
@@ -31,6 +33,12 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
 
+	@Autowired
+	private UserDao userDao;
+
+	@Autowired
+	private PasswordEncoder bcryptEncoder;
+
 	@PostMapping({ "/login" })
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
@@ -51,6 +59,13 @@ public class JwtAuthenticationController {
 		} else {
 			return new ResponseEntity("User already exists", HttpStatus.CONFLICT);
 		}
+	}
+
+	@PutMapping({"/changePassword"})
+	public ResponseEntity<?> changePassword(@RequestParam String userName, @RequestParam String password, @RequestParam String newPassword) throws Exception {
+		authenticate(userName, password);
+		userDao.changeUserPassword(userName, bcryptEncoder.encode(newPassword));
+		return ResponseEntity.ok(true);
 	}
 
 	private void authenticate(String username, String password) throws Exception {
