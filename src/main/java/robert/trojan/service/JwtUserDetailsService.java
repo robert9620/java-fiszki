@@ -9,11 +9,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import robert.trojan.dao.SetDao;
 import robert.trojan.dao.SettingDao;
 import robert.trojan.dao.UserDao;
+import robert.trojan.dao.WordDao;
+import robert.trojan.entity.DAOSet;
 import robert.trojan.entity.DAOSetting;
 import robert.trojan.entity.DAOUser;
 import robert.trojan.dto.UserDTO;
+import robert.trojan.entity.DAOWord;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
@@ -23,6 +27,12 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private SettingDao settingDao;
+
+	@Autowired
+	private SetDao setDao;
+
+	@Autowired
+	private WordDao wordDao;
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
@@ -54,6 +64,18 @@ public class JwtUserDetailsService implements UserDetailsService {
 			newSetting.setStyledFont(true);
 			newSetting.setUser(newUser);
 			settingDao.save(newSetting);
+
+			DAOSet newSet = new DAOSet();
+			newSet.setName("Testowy zestaw");
+			newSet.setFavourite(false);
+			newSet.setUser(newUser);
+			setDao.save(newSet);
+
+			DAOWord newWord = new DAOWord();
+			newWord.setWord("example");
+			newWord.setDefinition("przykład");
+			newWord.setSet(newSet);
+			wordDao.save(newWord);
 
 			return true;
 		} else {
